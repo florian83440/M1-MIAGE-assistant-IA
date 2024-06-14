@@ -2,10 +2,9 @@
 <template>
   <div class="mainPrint" v-show="messages.length > 0">
     <div v-for="message in messages" :key="index"style="text-align: left; width: 100%;">
-      {{message.date}}<span style="font-weight: bold;"> You : </span>{{message.prompt}}
+      <div style="text-align: right">{{message.date}}<span style="font-weight: bold;"> You : </span>{{message.prompt}}</div>
       <br>
       {{message.date}}<span style="font-weight: bold;"> MIAGEGPT : </span>{{message.response}}
-      <hr style="margin: 0;">
     </div>
   </div>
 </template>

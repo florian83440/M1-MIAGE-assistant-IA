@@ -4,10 +4,8 @@ import Menu from './components/Menu.vue'
 
 <template>
   <div class="columns">
-    <div class="column is-2">
       <Menu/>
-    </div>
-    <div class="column is-10">
+    <div class="column is-12">
       <router-view/>
     </div>
   </div>

@@ -24,7 +24,8 @@ export default {
           title: 'MiageGPTools',
           icon: ['fas', 'tools'],
           items: [
-            { name: 'Chatbot', route: '/chatbot' },
+            { name: 'MiageGPT', route: '/chatbot' },
+            { name: 'Dall-image', route: '/imagebot' },
           ]
         }
       ]

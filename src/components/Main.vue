@@ -1,7 +1,6 @@
 <template>
   <div class="mainContent">
     <div class="screenPrint">
-      <div class="mainTitle" v-if="messages.length === 0">MIAGE GPT</div>
       <ChatBar :messages="messages"/>
     </div>
     <ChatPrompt @send-message="sendRequest"/>
