@@ -1,6 +1,5 @@
 <template>
   <nav class="sidebar">
-    <div class="logo"><img src="@/assets/images/logo.png"></div>
     <div v-for="(menu, index) in menuItems" :key="index" class="menu-list">
       <div class="menu-item">
         <font-awesome-icon :icon="menu.icon" />
@@ -36,7 +35,8 @@ export default {
 
 <style scoped>
 .sidebar {
-  margin: 10px;
+  left: 10px;
+  top: 10px;
   width: 60px;
   height: 98vh;
   position: fixed;
@@ -45,11 +45,6 @@ export default {
   transition: all .2s linear;
   border-radius: 10px;
   z-index: 99;
-}
-
-.sidebar .logo {
-  border-radius: 10px;
-  padding: 20px 20px;
 }
 
 .sidebar .menu-item {

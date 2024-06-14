@@ -3,6 +3,8 @@ import { API_KEY } from './config.js';
 import OpenAI from 'openai';
 import multer from 'multer';
 import mongoose from 'mongoose';
+import * as util from "node:util";
+import * as fs from "node:fs";
 
 // Create an instance of OpenAI with the API key
 const openai = new OpenAI({
@@ -38,27 +40,35 @@ const chatSchema = new mongoose.Schema({
 
 const Chat = mongoose.model('Chat', chatSchema);
 
-// Handle POST request to /chat and use multer to get the form data
+const filePath = '../data/website.json';
+
 app.post('/chat', upload.none(), async (req, res) => {
-    // Get prompt from the form data
+
     const prompt = req.body.prompt;
     console.log("PROMPT: ", prompt);
 
+    const readFile = util.promisify(fs.readFile);
+    let fileContent = '';
+
+    try {
+        fileContent = await readFile(filePath, 'utf8');
+    } catch (err) {
+        console.error('Error reading the file:', err);
+        return res.status(500).json({ error: 'Failed to read the fixed file' });
+    }
+
+    const combinedPrompt = `En t'aidant des données suivantes:\n${fileContent}\n\n${prompt}`;
     // Send the prompt to the OpenAI API
     try {
         const apiResponse = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
             messages: [
                 {
-                    "role": "user",
-                    "content": prompt
+                    "role": "assistant",
+                    "content": combinedPrompt
                 }
             ],
-            temperature: 1,
-            max_tokens: 7,
-            top_p: 1,
-            frequency_penalty: 0,
-            presence_penalty: 0,
+            max_tokens: 10
         });
 
         // Create a new chat document
@@ -81,7 +91,7 @@ app.post('/chat', upload.none(), async (req, res) => {
 // Handle GET request to /chats to retrieve all chat documents
 app.get('/chats', async (req, res) => {
     try {
-        const chats = await Chat.find().sort({ date: -1 });
+        const chats = await Chat.find().sort({ date: 1 });
         res.json(chats);
     } catch (error) {
         console.error('Error:', error);
