@@ -20,8 +20,7 @@ export default {
   data() {
     return {
       messages: [],
-      endpointURL: 'http://localhost:3001/chat',
-      headers: ["Michel Buffa", "Michel Syska", "Leo Donati"]
+      endpointURL: 'http://localhost:3001/chat'
     };
   },
   mounted() {
@@ -58,7 +57,6 @@ export default {
         const data = await response.json();
         console.log(data);
 
-        const header = this.headers[Math.floor(Math.random() * this.headers.length)] + " : ";
         let messageToShow = data.choices[0].message.content;
 
         const userMessage = {
@@ -75,11 +73,3 @@ export default {
   }
 };
 </script>
-
-<style>
-.mainTitle {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-</style>
