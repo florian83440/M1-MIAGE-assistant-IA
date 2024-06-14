@@ -1,11 +1,11 @@
 <template>
   <div class="columns">
-    <div class="column is-8">
+    <div class="column is-7">
       <div id="generatedImage">
         <img v-if="generatedImage" :src="generatedImage" alt="Generated Image" />
       </div>
     </div>
-    <div class="column is-4">
+    <div id="imagePromptcontainer" class="column is-5">
       <imagePrompt @send-message="sendRequest"/>
     </div>
   </div>
@@ -72,13 +72,14 @@ export default {
 </script>
 
 <style>
-.mainTitle {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
+
+#generatedImage {
+  margin: 20px;
 }
-img {
-  max-width: 100%;
+
+#imagePromptcontainer{
   margin-top: 20px;
+  background-color: white;
+
 }
 </style>
