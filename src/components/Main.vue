@@ -1,58 +1,86 @@
 <template>
   <div class="mainContent">
     <div class="screenPrint">
-      <div class="mainTitle">MIAGE GPT</div>
-      <div class="mainPrint" style="display: none;"></div>
+      <div class="mainTitle" v-if="messages.length === 0">MIAGE GPT</div>
+      <ChatBar :messages="messages"/>
     </div>
-    <div class="field is-grouped entryText">
-      <p class="control is-expanded">
-        <input class="input" type="text" placeholder="Type your question..." id="inputPrint">
-      </p>
-      <p class="control">
-        <button class="button" style="background-color: rgb(36, 123, 136); color: white" id="btnSendRequest">
-          Send
-        </button>
-      </p>
-    </div>
+    <ChatPrompt @send-message="sendRequest"/>
   </div>
 </template>
 
-<style scoped>
-.mainContent{
-  height: 100vh;
-}
-.screenPrint{
-  height: 93vh;
-}
-.entryText{
-  height: 7vh;
-  right: 5%;
-  border-top: 1px solid rgba(36, 123, 136, 0.2);
-  padding-top: 15px;
-  margin: 0px 5%;
-}
-.entryText input{
-  margin-left: 10%;
-  width: 80%;
-}
-div.mainTitle{
-  font-size: xx-large;
+<script>
+import ChatPrompt from './ChatPrompt.vue';
+import ChatBar from './ChatBar.vue';
+import axios from 'axios';
+
+export default {
+  components: {
+    ChatPrompt,
+    ChatBar
+  },
+  data() {
+    return {
+      messages: [],
+      endpointURL: 'http://localhost:3001/chat',
+      headers: ["Michel Buffa", "Michel Syska", "Leo Donati"]
+    };
+  },
+  mounted() {
+    this.getChats();
+  },
+  methods: {
+    async getChats() {
+      try {
+        const response = await axios.get('http://localhost:3001/chats');
+        this.messages = response.data.map(chat => {
+          return {
+            date: new Date(chat.date).toLocaleString(),
+            prompt: chat.prompt,
+            response: chat.response
+          };
+        });
+      } catch (error) {
+        console.error('Error fetching chats:', error);
+      }
+    },
+    async sendRequest(prompt) {
+      if (prompt === '') return;
+
+      const promptData = new FormData();
+      promptData.append('prompt', prompt);
+      promptData.append('max_tokens', 1);
+
+      try {
+        const response = await fetch(this.endpointURL, {
+          method: 'POST',
+          body: promptData
+        });
+
+        const data = await response.json();
+        console.log(data);
+
+        const header = this.headers[Math.floor(Math.random() * this.headers.length)] + " : ";
+        let messageToShow = data.choices[0].message.content;
+
+        const userMessage = {
+          date: new Date().toLocaleString(),
+          prompt: `${prompt}`,
+          response: `${messageToShow}`
+        };
+
+        this.messages.push(userMessage);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+  }
+};
+</script>
+
+<style>
+.mainTitle {
+  font-size: 24px;
   font-weight: bold;
-  position: absolute;
-  top: 50%;
-  left: 60%;
-  width: 200px;
-  height: 60px;
-  line-height: 60px;
-  margin-left: -100px;
-  margin-top: -30px;
-  text-align: center;
-}
-div.mainPrint{
-  margin: 0px 5%;
-  position: absolute;
-  bottom: 10%;
-  line-height: 60px;
-  text-align: center;
+  margin-bottom: 20px;
 }
 </style>

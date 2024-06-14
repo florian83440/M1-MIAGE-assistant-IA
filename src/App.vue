@@ -1,6 +1,5 @@
 <script setup>
 import Menu from './components/Menu.vue'
-import Main from "@/components/Main.vue";
 </script>
 
 <template>
@@ -9,7 +8,7 @@ import Main from "@/components/Main.vue";
       <Menu/>
     </div>
     <div class="column is-10">
-      <Main/>
+      <router-view/>
     </div>
   </div>
 </template>
