@@ -1,12 +1,11 @@
 import OpenAI from 'openai';
-import { API_KEY } from '../config/config.js';
 
 const openai = new OpenAI({
-    apiKey: API_KEY,
+    apiKey: process.env.API_KEY,
 });
 
 export const generateChatResponse = async (prompt) => {
-    return openai.chat.completions.create({
+    return await openai.chat.completions.create({
         model: "gpt-3.5-turbo",
         messages: [
             {
@@ -19,9 +18,17 @@ export const generateChatResponse = async (prompt) => {
 };
 
 export const generateAudioResponse = async (prompt) => {
-    return openai.audio.speech.create({
+    return await openai.audio.speech.create({
         model: "tts-1",
         voice: "alloy",
         input: prompt,
+    });
+};
+
+export const generateImageResponse = async (prompt) => {
+    return await openai.images.generations.create({
+        prompt: prompt,
+        n: 1,
+        size: '1024x1024'
     });
 };

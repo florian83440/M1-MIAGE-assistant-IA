@@ -1,5 +1,6 @@
 <template>
   <nav class="sidebar">
+    <br>
     <div v-for="(menu, index) in menuItems" :key="index" class="menu-list">
       <div class="menu-item">
         <font-awesome-icon :icon="menu.icon" />
@@ -46,6 +47,7 @@ export default {
   transition: all .2s linear;
   border-radius: 10px;
   z-index: 99;
+  border: 1px solid lightgrey;
 }
 
 .sidebar .menu-item {

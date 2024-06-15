@@ -15,7 +15,7 @@ export const createAudio = async (req, res) => {
         const date = new Date();
         const formattedDate = date.toISOString().replace(/[:.]/g, '-');
         const fileName = `speech_${formattedDate}.mp3`;
-        const speechFile = path.resolve(`../data/${fileName}`);
+        const speechFile = path.resolve(`../data/audios/${fileName}`);
         const buffer = Buffer.from(await mp3.arrayBuffer());
         await fs.promises.writeFile(speechFile, buffer);
 
