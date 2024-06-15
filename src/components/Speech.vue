@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       messages: [],
-      endpointURL: 'http://localhost:3001/chat'
+      endpointURL: 'http://localhost:3001/audio'
     };
   },
   mounted() {
@@ -29,12 +29,13 @@ export default {
   methods: {
     async getChats() {
       try {
-        const response = await axios.get('http://localhost:3001/chat');
+        const response = await axios.get('http://localhost:3001/audio');
         this.messages = response.data.map(chat => {
           return {
             date: new Date(chat.date).toLocaleString(),
             prompt: chat.prompt,
-            response: chat.response
+            response: chat.response,
+            audioURL: chat.audioURL
           };
         });
       } catch (error) {
@@ -42,11 +43,11 @@ export default {
       }
     },
     async sendRequest(prompt) {
+      console.log(prompt)
       if (prompt === '') return;
 
       const promptData = new FormData();
       promptData.append('prompt', prompt);
-      promptData.append('max_tokens', 1);
 
       try {
         const response = await fetch(this.endpointURL, {
@@ -57,12 +58,13 @@ export default {
         const data = await response.json();
         console.log(data);
 
-        let messageToShow = data.choices[0].message.content;
+        let audioURL = data.audio_url;
 
         const userMessage = {
           date: new Date().toLocaleString(),
           prompt: `${prompt}`,
-          response: `${messageToShow}`
+          response: 'Audio generated',
+          audioURL: `${audioURL}`
         };
 
         this.messages.push(userMessage);

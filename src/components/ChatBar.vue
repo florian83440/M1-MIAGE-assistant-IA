@@ -4,7 +4,11 @@
       <div style="text-align: center">{{ message.date }}</div>
       <div style="text-align: right"><span style="font-weight: bold;"> You : </span>{{ message.prompt }}</div>
       <br>
-      <div style="text-align: left"><span style="font-weight: bold;"> MIAGEGPT : </span>{{ message.response }}</div>
+      <div style="text-align: left">
+        <span style="font-weight: bold;"> MIAGEGPT : </span>
+        <audio v-if="message.audioURL" :src="'/data/audios/' + message.audioURL" controls></audio>
+        <span v-else>{{ message.response }}</span>
+      </div>
     </div>
   </div>
 </template>

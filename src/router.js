@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Main from './components/Main.vue';
+import Speech from "@/components/Speech.vue";
 
 const routes = [
     {
@@ -11,6 +12,11 @@ const routes = [
         path: '/chatbot',
         name: 'chatbot',
         component: Main
+    },
+    {
+        path: '/speechbot',
+        name: 'speechbot',
+        component: Speech
     }
 ];
 

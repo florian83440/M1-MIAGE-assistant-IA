@@ -25,6 +25,7 @@ export default {
           items: [
             { name: 'MiageGPT', route: '/chatbot' },
             { name: 'Dall-image', route: '/imagebot' },
+            { name: 'TheVoiceMiage', route: '/speechbot' }
           ]
         }
       ]
