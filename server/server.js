@@ -3,6 +3,7 @@ import { API_KEY } from './config.js';
 import OpenAI from 'openai';
 import multer from 'multer';
 import mongoose from 'mongoose';
+import axios from "axios";
 import * as util from "node:util";
 import * as fs from "node:fs";
 
@@ -42,6 +43,61 @@ const Chat = mongoose.model('Chat', chatSchema);
 
 const filePath = '../data/website.json';
 
+const imageSchema = new mongoose.Schema({
+    date: { type: Date, default: Date.now },
+    prompt: String,
+    url: String
+});
+
+const Image = mongoose.model('Image', imageSchema);
+
+// Handle POST request to /image and use multer to handle form data
+app.post('/image', upload.none(), async (req, res) => {
+    const promptText= req.body.promptText;
+    const imageType= req.body.imageType;
+    const imageShape= req.body.imageShape;
+    const imageSupport= req.body.imageSupport;
+    const imageBackground= req.body.imageBackground;
+    const imageStyle= req.body.imageStyle;
+    const generatedImage= req.body.imageStyle;
+
+    const prompt = `${promptText} image type: ${imageType}, image shape: ${imageShape}, image support ${imageSupport}, image background ${imageBackground},image style: ${imageStyle}, generated image:  ${generatedImage}`;
+
+
+    console.log(req.body.prompt)
+
+    try {
+        const response = await axios.post(
+            'https://api.openai.com/v1/images/generations',
+            {
+                prompt: prompt,
+                n: 1,
+                size: '1024x1024'
+            },
+            {
+                headers: {
+                    'Authorization': `Bearer ${API_KEY}`,
+                    'Content-Type': 'application/json'
+                }
+            }
+        );
+
+        const imageUrl = response.data.data[0].url;
+
+        // Save the generated image URL to MongoDB
+        const newImage = new Image({ prompt: prompt, url: imageUrl });
+        await newImage.save();
+
+        console.log(`Generated image URL: ${imageUrl}`);
+        res.json({ imageUrl });
+    } catch (error) {
+        console.error('Error generating image:', error.response ? error.response.data : error.message);
+        res.status(500).json({ error: 'Failed to generate image' });
+    }
+
+});
+
+// Handle POST request to /chat and use multer to get the form data
 app.post('/chat', upload.none(), async (req, res) => {
 
     const prompt = req.body.prompt;
