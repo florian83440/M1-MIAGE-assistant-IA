@@ -6,16 +6,15 @@ import mongoose from 'mongoose';
 import axios from "axios";
 import * as util from "node:util";
 import * as fs from "node:fs";
+import dotenv from 'dotenv';
+import chatRoutes from './routes/chatRoutes.js';
+import audioRoutes from './routes/audioRoutes.js';
+import './config/db.js';
 
-// Create an instance of OpenAI with the API key
-const openai = new OpenAI({
-    apiKey: API_KEY,
-});
-
+dotenv.config();
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
-// Configure CORS support
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -23,23 +22,9 @@ app.use((req, res, next) => {
     next();
 });
 
-// Init multer to handle form data
-const upload = multer();
-
-// Connect to MongoDB
-const mongoUri = 'mongodb+srv://usermiagegpt:MDYqRLeDiVvWYo4c@miagegpt.eryt9d1.mongodb.net/gpt?retryWrites=true&w=majority';
-mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('MongoDB connected...'))
-    .catch(err => console.error('MongoDB connection error:', err));
-
-// Define a schema and model for storing chats
-const chatSchema = new mongoose.Schema({
-    date: { type: Date, default: Date.now },
-    prompt: String,
-    response: String
-});
-
-const Chat = mongoose.model('Chat', chatSchema);
+app.use(multer().none());
+app.use('/chat', chatRoutes);
+app.use('/audio', audioRoutes);
 
 const filePath = '../data/website.json';
 
