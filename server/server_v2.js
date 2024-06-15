@@ -3,7 +3,6 @@ import multer from 'multer';
 import dotenv from 'dotenv';
 import chatRoutes from './routes/chatRoutes.js';
 import audioRoutes from './routes/audioRoutes.js';
-import imageRoutes from './routes/imageRoutes.js';
 import './config/db.js';
 
 dotenv.config();
@@ -20,7 +19,6 @@ app.use((req, res, next) => {
 app.use(multer().none());
 app.use('/chat', chatRoutes);
 app.use('/audio', audioRoutes);
-app.use('/image', imageRoutes);
 
 app.listen(port, () => {
     console.log(`Server started on http://localhost:${port}`);

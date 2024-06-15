@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Main from './components/Main.vue';
 import imagebot from "@/components/Imagebot.vue";
+import Speech from "@/components/Speech.vue";
 
 const routes = [
     {
@@ -17,6 +18,11 @@ const routes = [
         path: '/imagebot',
         name: 'imagebot',
         component: imagebot
+    },
+    {
+        path: '/speechbot',
+        name: 'speechbot',
+        component: Speech
     }
 ];
 

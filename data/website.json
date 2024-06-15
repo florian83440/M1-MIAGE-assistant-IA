@@ -1,0 +1,67 @@
+{
+  "MIAGE_Nice": {
+    "director_message": {
+      "name": "Michel BUFFA",
+      "title": "Directeur de la MIAGE_Nice",
+      "message": "Notre objectif est de former nos étudiants à devenir des cadres à haut niveau d'expertise en ingénierie et management des systèmes d'information. La MIAGE de Nice est reconnue depuis plus de 40 ans pour la grande qualité de sa formation prodiguée par des enseignants issus du monde académique mais aussi professionnel. Nos équipes pédagogiques et administratives accompagnent les étudiants tout au long de leur parcours universitaire et professionnel. Toutes nos formations sont ouvertes à l'alternance..."
+    },
+    "formation": {
+      "overview": "La MIAGE_Nice fait partie de l'offre de formation de l'Ecole Universitaire de Recherche Digital Systems for Humans d'Université Côte d'Azur. L'EUR DS4H offre aux étudiants miagistes la possibilité d’enrichir leur cursus avec un catalogue unique de cours pluridisciplinaires (mineures), de tutorats (immersion en laboratoire) et de projets individuels ou de groupe.",
+      "key_points": [
+        "Un cursus pluridisciplinaire professionnalisant d'excellence de niveau Licence (Bac +3) et Master (Bac +5)",
+        "Des enseignements dispensés par des experts (IAE de Nice pour le management, enseignants-chercheurs en informatique, etc.)",
+        "Un taux de réussite en Master 2 de 100%",
+        "Un réseau national des MIAGE dynamique et reconnu des entreprises",
+        "Un Campus SophiaTech - Les Lucioles situé en plein cœur de Sophia Antipolis, première technopole d'Europe"
+      ]
+    },
+    "location": {
+      "address": "Université Côte d'Azur, Grand Château, 28 Avenue de Valrose, 06103 Nice CEDEX 2"
+    },
+    "contact": {
+      "facebook": "https://www.facebook.com/Université Côte d'Azur",
+      "linkedin": "https://www.linkedin.com/school/Université Côte d'Azur",
+      "instagram": "https://www.instagram.com/Université Côte d'Azur",
+      "youtube": "https://www.youtube.com/Université Côte d'Azur",
+      "tiktok": "https://www.tiktok.com/@Université Côte d'Azur"
+    },
+    "eur_ds4h": {
+      "overview": "La MIAGE_Nice fait partie de l'offre de formation de l'Ecole Universitaire de Recherche Digital Systems for Humans (EUR DS4H) d'Université Côte d'Azur.",
+      "features": [
+        "5 masters aux spécialisations bien identifiées, tous ouverts à l'alternance, qui couvrent les aspects scientifiques, technologiques et sociétaux du numérique",
+        "Un catalogue de cours de mineures et projets à la carte pour personnaliser votre cursus",
+        "Proximité avec les laboratoires de recherche et les entreprises IT de la technopole de Sophia Antipolis",
+        "Des opportunités de doctorats pour inventer le monde numérique de demain"
+      ]
+    },
+    "network": {
+      "overview": "Le réseau national MIAGE est une association loi 1901 qui fédère les MIAGE des universités françaises. Son rôle est de promouvoir la formation MIAGE, de faciliter les échanges entre les différentes MIAGE et de représenter le réseau auprès des entreprises et des institutions.",
+      "benefits": [
+        "Dynamisme et reconnaissance auprès des entreprises",
+        "Échanges et collaborations entre les différentes MIAGE de France"
+      ]
+    },
+    "programs": {
+      "licence": "Licence MIAGE (Bac +3)",
+      "master": "Master MIAGE (Bac +5)",
+      "description": "La formation MIAGE propose un cursus pluridisciplinaire professionnalisant, avec des enseignements dispensés par des experts en management et en informatique, ainsi que des opportunités d'alternance."
+    },
+    "scolarite": {
+      "details": "Informations concernant les procédures administratives, inscriptions, calendrier universitaire et contacts des services de scolarité pour les étudiants de la MIAGE."
+    },
+    "campus_sophiatech": {
+      "location": "Le Campus SophiaTech - Les Lucioles est situé en plein cœur de Sophia Antipolis, première technopole d'Europe. Il offre un cadre de travail exceptionnel et une proximité avec de nombreuses entreprises du secteur numérique."
+    },
+    "junior_entreprise": {
+      "overview": "La Junior MIAGE Concept (JMC) permet aux étudiants de mettre en pratique leurs compétences en réalisant des projets pour des entreprises, tout en étant accompagnés par des professionnels.",
+      "address": "1645 Route des Lucioles, 06410 BIOT",
+      "contact": "+33 (0)4.89.15.42.31"
+    },
+    "student_associations": {
+      "overview": "Les associations étudiantes de la MIAGE proposent diverses activités et événements pour enrichir la vie étudiante et favoriser les échanges entre les étudiants."
+    },
+    "business_relations": {
+      "overview": "La MIAGE de Nice entretient des relations étroites avec les entreprises, offrant des opportunités de stages, d'alternance et d'emploi à ses étudiants. Les entreprises peuvent également participer à des événements et soutenir la MIAGE."
+    }
+  }
+}
